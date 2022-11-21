@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -79,6 +80,14 @@ public class GenericKeywords {
 		
 	}
 	
+	public List<WebElement> getElements(String locatorKey)
+	{
+		
+		List<WebElement> elements = driver.findElements(getLocator(locatorKey));
+		
+		
+		return elements;
+	}
 	public WebElement getElement(String locatorKey)
 	{
 		
