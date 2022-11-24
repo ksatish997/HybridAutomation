@@ -20,6 +20,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
+import com.aventstack.extentreports.ExtentTest;
+
 public class GenericKeywords {
 	
 	WebDriver driver;
@@ -29,6 +31,8 @@ public class GenericKeywords {
 	Properties prop;
 	
 	SoftAssert softAssert;
+	
+	ExtentTest test;
 	
 	//true -- if element is visible
 	//false -- if element is not visible
@@ -147,6 +151,7 @@ public class GenericKeywords {
 	
 	public void click(String locatorKey)
 	{
+		
 		
 		getElement(locatorKey).click();
 		
