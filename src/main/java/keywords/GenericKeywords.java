@@ -15,24 +15,33 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
 import org.testng.asserts.SoftAssert;
 
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class GenericKeywords {
 	
-	WebDriver driver;
+	public WebDriver driver;
 	
-	Properties envProp;
+	public Properties envProp;
 	
-	Properties prop;
+	public Properties prop;
 	
-	SoftAssert softAssert;
+	public SoftAssert softAssert;
 	
-	ExtentTest test;
+	public ExtentTest test;
+	
+	public ITestContext context;
 	
 	//true -- if element is visible
 	//false -- if element is not visible
@@ -252,4 +261,58 @@ public class GenericKeywords {
 		
 	}
 	
+	public void log(String msg)
+	{
+		test.log(Status.INFO, msg);
+	}
+	
+	public void openBrowser(String browser)
+	{
+		
+		log("Opening the browser "+ browser);
+		
+		
+		if(browser.equalsIgnoreCase("chrome"))
+		{
+			WebDriverManager.chromedriver().setup();
+			driver=new ChromeDriver();
+		}
+		else if(browser.equalsIgnoreCase("firefox"))
+		{
+			WebDriverManager.firefoxdriver().setup();
+			driver=new FirefoxDriver();
+		}
+		else if(browser.equalsIgnoreCase("edge"))
+		{
+			WebDriverManager.edgedriver().setup();
+			driver=new EdgeDriver();
+		}
+		
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		
+	}
+	
+	public void navigate(String url)
+	{
+		log("Navigating to "+url);
+		driver.get(url);
+	}
+	
+	public void asserAll() 
+	{
+		softAssert.assertAll();
+	}
+	
+	public void clear(String locatorKey)
+	{
+		log("Clearing Text field "+locatorKey);
+		getElement(locatorKey).clear();
+		
+	}
+	
+	public void setTestContext(ITestContext context)
+	{
+		this.context=context;
+	}
 }

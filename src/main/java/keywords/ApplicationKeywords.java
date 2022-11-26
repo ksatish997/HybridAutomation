@@ -14,7 +14,6 @@ public class ApplicationKeywords extends ValidationKeywords {
 	
 	Properties prop1;
 	
-	ITestContext context;
 	
 	public ApplicationKeywords() 
 	{
@@ -34,14 +33,20 @@ public class ApplicationKeywords extends ValidationKeywords {
 	}
 	
 	
-	public void setTestContext(ITestContext context)
-	{
-		this.context=context;
-	}
+	
 	
 	public void setReport(ExtentTest test)
 	{
 		this.test=test;
 	}
 
+	public void defaultLogin()
+	{
+		navigate(prop1.getProperty(getTitle()));
+		type("username_name", prop1.getProperty("username_name"));
+		type("password_name", prop1.getProperty("password_name"));
+		click("login_name");
+		waitForPageToLoad();
+		
+	}
 }

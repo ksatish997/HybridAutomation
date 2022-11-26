@@ -4,78 +4,62 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 public class MyTestNGListeners implements ITestListener{
 
 	public void onTestStart(ITestResult result) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void onTestSuccess(ITestResult result) {
-		// TODO Auto-generated method stub
 		
+		System.out.println("***************Test Passes "+result.getName());
+		
+		ExtentTest test=(ExtentTest)result.getTestContext().getAttribute("test");
+		
+		test.log(Status.PASS, result.getName()+" --- Test Passed");
 	}
 
 	public void onTestFailure(ITestResult result) {
-		// TODO Auto-generated method stub
 		
+		System.out.println("***************Test Failed "+result.getName());
+		
+		System.out.println(result.getThrowable().getMessage());;
+		
+		ExtentTest test=(ExtentTest)result.getTestContext().getAttribute("test");
+		
+		test.log(Status.FAIL, result.getThrowable().getMessage());
+	
 	}
 
 	public void onTestSkipped(ITestResult result) {
-		// TODO Auto-generated method stub
 		
+		System.out.println("***************Test Skipped "+result.getName());
+		
+		ExtentTest test=(ExtentTest)result.getTestContext().getAttribute("test");
+		
+		test.log(Status.SKIP, result.getName()+" --- Test Skipped");
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void onTestFailedWithTimeout(ITestResult result) {
-		// TODO Auto-generated method stub
-		ITestListener.super.onTestFailedWithTimeout(result);
+		
 	}
 
 	public void onStart(ITestContext context) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void onFinish(ITestContext context) {
-		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
-
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		return super.clone();
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
-
-	@Override
-	protected void finalize() throws Throwable {
-		// TODO Auto-generated method stub
-		super.finalize();
-	}
-
+	
 	
 	
 }

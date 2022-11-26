@@ -43,6 +43,12 @@ public class DriverScript {
 		app.setReport(test);
 	}
 
-	
+	public void defaultLogin(String browser)
+	{
+		
+		app.openBrowser(browser);
+		
+		
+	}
 	
 }
