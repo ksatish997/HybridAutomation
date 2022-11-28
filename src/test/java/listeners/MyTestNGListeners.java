@@ -7,7 +7,9 @@ import org.testng.ITestResult;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-public class MyTestNGListeners implements ITestListener{
+import base.BaseTest;
+
+public class MyTestNGListeners extends BaseTest implements ITestListener{
 
 	public void onTestStart(ITestResult result) {
 		

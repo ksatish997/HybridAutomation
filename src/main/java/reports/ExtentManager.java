@@ -25,6 +25,7 @@ public class ExtentManager {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
 		String date = simpleDateFormat.format(new Date());
+		date=date.replace(":", "-");
 		System.out.println(date);
 		
 		String reportFilePath=reportsFolderPath+"\\"+date+".html";
@@ -40,7 +41,7 @@ public class ExtentManager {
 		
 		reports.attachReporter(reporter);
 		
-		return null;
+		return reports;
 		
 	}
 }

@@ -1,6 +1,9 @@
 package base;
 
 import org.testng.ITestContext;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import com.aventstack.extentreports.ExtentReports;
@@ -12,11 +15,11 @@ import reports.ExtentManager;
 
 public class BaseTest {
 
-	public DriverScript  ds;
+	public static DriverScript  ds;
 	
-	public ExtentReports reports;
+	public static ExtentReports reports;
 	
-	public ExtentTest test;
+	public static ExtentTest test;
 	
 	@BeforeTest(alwaysRun=true)
 	public void beforeTest(ITestContext context)
@@ -30,10 +33,41 @@ public class BaseTest {
 		
 		ds=new DriverScript();
 		ds.setReport(test);
-		ds.defaultLogin("chrome");
+		//ds.defaultLogin("chrome");
 		ds.setTestContext(context);
 		context.setAttribute("driver", ds);
 		
+	}
+	
+	@BeforeMethod
+	public void beforeMethod(ITestContext context)
+	{
+		
+		test=(ExtentTest) context.getAttribute("test");
+		reports=(ExtentReports) context.getAttribute("report");
+		ds=(DriverScript) context.getAttribute("driver");
+		
+		
+	}
+	
+	@AfterMethod(alwaysRun = true)
+	public void teardown(ITestContext context)
+	{
+		reports=(ExtentReports) context.getAttribute("report");
+		ds=(DriverScript) context.getAttribute("driver");
+		
+		ds.quit();
+	}
+	@AfterTest(alwaysRun = true)
+	public void afterTest(ITestContext context)
+	{
+		reports=(ExtentReports) context.getAttribute("report");
+		ds=(DriverScript) context.getAttribute("driver");
+		
+		if(reports!=null)
+		{
+			reports.flush();
+		}
 	}
 		
 	}

@@ -8,9 +8,9 @@ import keywords.ApplicationKeywords;
 
 public class DriverScript {
 	
-	ApplicationKeywords app;
+	public ApplicationKeywords app;
 	
-	ITestContext context;
+	public ITestContext context;
 	
 	public DriverScript()
 	{

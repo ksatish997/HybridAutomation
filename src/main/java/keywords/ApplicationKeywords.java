@@ -12,7 +12,6 @@ import com.aventstack.extentreports.ExtentTest;
 
 public class ApplicationKeywords extends ValidationKeywords {
 	
-	Properties prop1;
 	
 	
 	public ApplicationKeywords() 
@@ -20,8 +19,8 @@ public class ApplicationKeywords extends ValidationKeywords {
 		
 		try {
 			FileInputStream fis1=new FileInputStream(System.getProperty("user.dir")+"\\Properties\\config.properties");
-		    prop1=new Properties();
-		    prop1.load(fis1);
+			envProp=new Properties();
+			envProp.load(fis1);
 		    
 		    
 		} catch (IOException e) {
@@ -29,6 +28,16 @@ public class ApplicationKeywords extends ValidationKeywords {
 			e.printStackTrace();
 		}
 		
+		try {
+			FileInputStream fis2=new FileInputStream(System.getProperty("user.dir")+"\\Properties\\locators.properties");
+			prop=new Properties();
+			prop.load(fis2);
+		    
+		    
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		softAssert=new SoftAssert();
 	}
 	
@@ -42,9 +51,9 @@ public class ApplicationKeywords extends ValidationKeywords {
 
 	public void defaultLogin()
 	{
-		navigate(prop1.getProperty(getTitle()));
-		type("username_name", prop1.getProperty("username_name"));
-		type("password_name", prop1.getProperty("password_name"));
+		navigate(prop.getProperty(getTitle()));
+		type("username_name", prop.getProperty("username_name"));
+		type("password_name", prop.getProperty("password_name"));
 		click("login_name");
 		waitForPageToLoad();
 		

@@ -39,7 +39,7 @@ public class GenericKeywords {
 	
 	public SoftAssert softAssert;
 	
-	public ExtentTest test;
+	public static ExtentTest test;
 	
 	public ITestContext context;
 	
@@ -196,6 +196,7 @@ public class GenericKeywords {
 	
 	public void type(String locatorKey, String text)
 	{
+		log("Entering text "+text+" in textbox with locatorkey "+locatorKey);
 		getElement(locatorKey).sendKeys(text);
 	}
 
@@ -295,8 +296,9 @@ public class GenericKeywords {
 	
 	public void navigate(String url)
 	{
-		log("Navigating to "+url);
-		driver.get(url);
+		System.out.println("Navigating to "+url);
+		log("Navigating to "+envProp.getProperty(url));
+		driver.get(envProp.getProperty(url));
 	}
 	
 	public void asserAll() 
