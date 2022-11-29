@@ -1,6 +1,7 @@
 package util;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,12 +14,24 @@ public class UtilKit {
 	
 static String resourceFolder="src\\test\\resources";
 	
-	public static Object[][] getData(String sheetName,String testcase) throws IOException
+	public static Object[][] getData(String sheetName,String testcase) 
 	{
 		
-		FileInputStream fis1=new FileInputStream(resourceFolder+"\\excels\\MasterTestData.xlsx");
+		FileInputStream fis1=null;
+		try {
+			fis1 = new FileInputStream(resourceFolder+"\\testdata\\excels\\MasterTestData.xlsx");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		XSSFWorkbook wb1=new XSSFWorkbook(fis1);
+		XSSFWorkbook wb1=null;
+		try {
+			wb1 = new XSSFWorkbook(fis1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		XSSFSheet ws1=wb1.getSheet(sheetName);
 		

@@ -22,6 +22,12 @@ public class ValidationKeywords extends GenericKeywords{
 		softAssert.assertTrue(getText(locatorKey).contains(text), "Text is not matched");
 	}
 	
+	public void  validateAttibuteValue(String locatorKey,String attribute,String text)
+	{
+		softAssert.assertTrue(getAttributeValue(locatorKey, attribute).contains(text), "Text is not matched");
+		log(locatorKey+" is having the text "+ text);
+	}
+	
 	public void validateRadioCheckOption(String locatorKey,String text)
 	{
 		

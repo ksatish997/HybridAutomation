@@ -7,7 +7,7 @@
 </listeners>
   <test thread-count="5" name="Validtaion Tests">
     <classes>
-      <class name="testcases.ValidateLogin"/>
+      <class name="testcases.ToVerifyValidLoginDetails"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

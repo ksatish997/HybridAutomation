@@ -188,6 +188,11 @@ public class GenericKeywords {
 		
 	}
 	
+	public String getAttributeValue(String locatorKey,String attribute)
+	{
+		return getElement(locatorKey).getAttribute(attribute);
+	}
+	
 	public void selectByVisibleText(String locatorKey, String text)
 	{
 		
